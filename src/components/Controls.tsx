@@ -187,6 +187,7 @@ export default function Controls() {
         id="generate-button"
         className="control-button" 
         onClick={generateRandomArray}
+        disabled={sorting}
       >
         Generate Array
       </button>

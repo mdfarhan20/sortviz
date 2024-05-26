@@ -304,4 +304,8 @@ input[type=range]::-webkit-slider-runnable-track {
   .bar {
     height: 0.4rem;
   }
+
+  .slider-input {
+    width: 140px;
+  }
 }

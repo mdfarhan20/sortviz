@@ -1,6 +1,5 @@
 import Header from "components/Header";
 import Visualizer from "components/Visualizer";
-import Controls from "components/Controls";
 import { VisualizerProvider } from "context/VisualizerContext";
 
 export default function App() {
@@ -11,7 +10,6 @@ export default function App() {
         <Header />
         <main>
           <Visualizer />
-          <Controls />
         </main>
       </VisualizerProvider>
     </>

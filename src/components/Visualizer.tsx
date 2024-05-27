@@ -1,6 +1,7 @@
 import VisualizerContext from "context/VisualizerContext";
 import { useContext, useEffect, useState } from "react";
 import type { VisualizerContextType } from "types";
+import Controls from "./Controls";
 
 
 export default function Visualizer() {
@@ -41,6 +42,7 @@ export default function Visualizer() {
           ></div>
         )) }
       </div>
+      <Controls />
     </section>
   );
 }

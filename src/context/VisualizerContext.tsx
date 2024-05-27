@@ -9,7 +9,7 @@ export function VisualizerProvider({ children }: {children: React.ReactNode}) {
   const [algorithm, setAlgorithm] = useState<Algorithm>(ALGORITHMS[0]);
   const [array, setArray] = useState<number[]>([]);
   const [size, setSize] = useState<number>(20);
-  const [speed, setSpeed] = useState<number>(5);
+  const [speed, setSpeed] = useState<number>(8);
   const barsRef = useRef<HTMLDivElement | null>(null);
 
   function generateRandomArray() {

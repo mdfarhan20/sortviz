@@ -213,7 +213,7 @@ export default function Controls() {
           <input 
             type="range" 
             min={10}
-            max={50}
+            max={40}
             className="slider-input"
             defaultValue={size}
             onChange={(e) => setSize(parseInt(e.target.value))}

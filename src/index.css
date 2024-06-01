@@ -20,6 +20,7 @@
   --clr-bar: #3da5d9;
   --clr-compare: #ff4d6d;
   --clr-swap: #ff5714;
+  --clr-sorted: #57cc99;
 
   --clr-green-secondary: #80ed99;
   --clr-blue-secondary: #cbf3f0;
@@ -137,6 +138,10 @@ main {
 
 .swapping {
   background-color: var(--clr-swap);
+}
+
+.sorted {
+  background-color: var(--clr-sorted);
 }
 
 .algo-burger {

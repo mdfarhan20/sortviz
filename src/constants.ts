@@ -13,6 +13,10 @@ const ALGORITHMS: Algorithm[] = [
     name: "Insertion Sort",
     value: "insertion"
   },
+  {
+    name: "Merge Sort",
+    value: "merge"
+  }
 ];
 
 export { ALGORITHMS };

@@ -13,6 +13,10 @@ export function VisualizerProvider({ children }: {children: React.ReactNode}) {
   const barsRef = useRef<HTMLDivElement | null>(null);
 
   function generateRandomArray() {
+    const bars = barsRef.current as HTMLDivElement;
+    for (let i = 0; i < bars.children.length; i++)
+      bars.children[i].classList.remove("sorted");
+
     const newArray = [];
     const minHeight = 5, maxHeight = 100;
     for (let i = 0; i < size; i++) {

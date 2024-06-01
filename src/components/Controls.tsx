@@ -1,4 +1,4 @@
-import {bubbleSort, insertionSort, selectionSort} from "algorithms/index";
+import {bubbleSort, insertionSort, selectionSort, mergeSort} from "algorithms/index";
 import VisualizerContext from "context/VisualizerContext";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { BubbleSortOperation, SelectionSortOperation, VisualizerContextType, insertionSortOpertation } from "types";
@@ -25,6 +25,21 @@ export default function Controls() {
 
   useEffect(generateRandomArray, [size]);
 
+  const sorted = () => {
+    const bars = barsRef.current as HTMLDivElement;
+    const length = bars.children.length;
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i >= length) {
+        clearInterval(interval);
+        return;
+      }
+
+      bars.children[i].classList.add("sorted");
+      i++;
+    }, 50);
+  }
+
   const visualizeBubbleSort = () => {
     let i = 0;
     const operations: BubbleSortOperation[] = bubbleSort(array);
@@ -43,6 +58,7 @@ export default function Controls() {
       if (i >= operations.length) {
         clearInterval(sortInterval);
         setSorting(false);
+        sorted();
         return;
       }
       
@@ -91,6 +107,7 @@ export default function Controls() {
       if (i >= operations.length) {
         clearInterval(sortInterval);
         setSorting(false);
+        sorted();
         return;
       }
 
@@ -140,6 +157,7 @@ export default function Controls() {
       if (i >= operations.length) {
         clearInterval(sortInterval);
         setSorting(false);
+        sorted();
         return;
       }
 
@@ -169,6 +187,59 @@ export default function Controls() {
     }, interval);
   }
 
+  const visualizeMergeSort = () => {
+    const tempArray = [...array];
+    const bars = barsRef.current as HTMLDivElement;
+
+    const operations = mergeSort(tempArray);
+
+    let i = 0;
+    const sortInterval = setInterval(() => {
+      if (i > 0) {
+        const prevOperation = operations[i - 1];
+        if (prevOperation.compare) {
+          bars.children[prevOperation.compare[0] + prevOperation.sorted].classList.remove("comparing");
+          bars.children[prevOperation.compare[1]].classList.remove("comparing");
+        } else if (prevOperation.insert) {
+          bars.children[prevOperation.insert.position].classList.remove("swapping");
+        }
+      }
+
+      if (i >= operations.length) {
+        clearInterval(sortInterval);
+        setSorting(false);
+        sorted();
+        return;
+      }
+
+      const operation = operations[i];
+      if (operation.compare) {
+        bars.children[operation.compare[0] + operation.sorted].classList.add("comparing");
+        bars.children[operation.compare[1]].classList.add("comparing");
+      } else if (operation.insert) {
+        const index = operation.insert.index;
+        const position = operation.insert.position;
+
+        setArray((prev) => {
+          const array = [...prev];
+          let i = operation.insert?.adjust ? index + operation.sorted : index;
+          const current = array[i];
+          while (i > position) {
+            array[i] = array[i - 1];
+            i--;
+          }
+
+          array[i] = current;
+          return array;
+        });
+
+        bars.children[position].classList.add("swapping");
+      }
+
+      i++;
+    }, interval);
+  }
+
   const visualize = () => {
     setSettingsOpen(false);
 
@@ -179,6 +250,8 @@ export default function Controls() {
       return visualizeSelectionSort();
     else if (value === "insertion")
       return visualizeInsertionSort();
+    else if (value === "merge")
+      return visualizeMergeSort();
   }
 
   return (

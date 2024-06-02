@@ -32,6 +32,7 @@ export default function Controls() {
     const interval = setInterval(() => {
       if (i >= length) {
         clearInterval(interval);
+        setSorting(false);
         return;
       }
 
@@ -57,7 +58,6 @@ export default function Controls() {
       
       if (i >= operations.length) {
         clearInterval(sortInterval);
-        setSorting(false);
         sorted();
         return;
       }
@@ -106,7 +106,6 @@ export default function Controls() {
 
       if (i >= operations.length) {
         clearInterval(sortInterval);
-        setSorting(false);
         sorted();
         return;
       }
@@ -156,7 +155,6 @@ export default function Controls() {
 
       if (i >= operations.length) {
         clearInterval(sortInterval);
-        setSorting(false);
         sorted();
         return;
       }
@@ -190,6 +188,7 @@ export default function Controls() {
   const visualizeMergeSort = () => {
     const tempArray = [...array];
     const bars = barsRef.current as HTMLDivElement;
+    setSorting(true);
 
     const operations = mergeSort(tempArray);
 
@@ -207,7 +206,6 @@ export default function Controls() {
 
       if (i >= operations.length) {
         clearInterval(sortInterval);
-        setSorting(false);
         sorted();
         return;
       }

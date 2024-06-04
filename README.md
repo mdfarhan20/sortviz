@@ -8,12 +8,13 @@ This is a sorting algorithim viusalizer where you visually understand the proces
 - [Built with](#built-with)
 - [Author](#author)
 
+#### Video Demo:  [Watch the Video](https://youtu.be/wrXhiMbe6mo)
+
 ## Screenshot
 
 ![](./screenshot.jpg)
 
 Live Site URL:  [Try the app here](https://mdfarhan20.github.io/sortviz/)
-
 
 ## Built with
 
